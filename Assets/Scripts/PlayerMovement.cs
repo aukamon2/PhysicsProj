@@ -5,8 +5,10 @@ using UnityEngine.XR;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed;
-    
+    private float moveSpeed;
+    public float walkSpeed;
+    public float sprintSpeed;
+
     public float groundDrag;
    
     public float jumpForce;
@@ -14,7 +16,9 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier;
     bool canJump;
 
+    //keyCode
     public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode sprintKey = KeyCode.LeftShift;
 
     public float playerHeight;
     public LayerMask Grounded;
@@ -29,20 +33,28 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
-
+    public MovementState state;
+    public enum MovementState
+    {
+        walking,
+        sprinting,
+        air
+        
+    }
     // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         canJump = true;
+        
     }
     private void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 2f, Grounded);
         myInput();
-
         speedControl();
+        StateHandler();
 
         if (grounded)
         {
@@ -69,12 +81,29 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
-    
+    private void StateHandler()
+    {
+        if(grounded && Input.GetKey(sprintKey))
+        {
+            state = MovementState.sprinting;
+            moveSpeed = sprintSpeed;
+        }
+        else if(grounded) 
+        { 
+            state = MovementState.walking;
+            moveSpeed = walkSpeed;
+        }
+        else
+        {
+            state = MovementState.air;
+        }
+    }
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        
     }
     
     private void speedControl()
@@ -98,4 +127,7 @@ public class PlayerMovement : MonoBehaviour
     {
         canJump = true;
     }
+    
+    
+    
 }
