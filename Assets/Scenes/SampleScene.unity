@@ -237,7 +237,7 @@ Transform:
   m_GameObject: {fileID: 645068269}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.46000004}
+  m_LocalPosition: {x: 0, y: 0, z: 0.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -746,7 +746,6 @@ Transform:
   - {fileID: 1886878965}
   - {fileID: 683752993}
   - {fileID: 1785471512}
-  - {fileID: 1929073519}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1031274283
@@ -929,21 +928,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  timeBetweenShooting: 1
+  timeBetweenShooting: 0.25
   spread: 0.01
-  range: 100
+  range: 250
   reloadTime: 1.75
-  timeBetweenShot: 0
-  magazineSize: 24
-  bulletPerTabs: 6
+  timeBetweenShot: 0.25
+  magazineSize: 30
+  bulletPerTabs: 1
   allowButtonHold: 1
   fpsCamera: {fileID: 2030873539}
   attackPoint: {fileID: 645068270}
   isEnemy:
     serializedVersion: 2
     m_Bits: 128
-  muzzleFlashEffect: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
-  bulletHoleGraphic: {fileID: 1000010844420130, guid: 4edabb1c0dde62743b137378c7d22980, type: 3}
+  muzzleFlash: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+  bulletHoleGraphic: {fileID: 1000013169864706, guid: e5a3d6da48298a0458c1990f58c27069, type: 3}
   ammoDisplay: {fileID: 0}
 --- !u!1 &1741775146
 GameObject:
@@ -1232,7 +1231,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2030873536}
-  m_Father: {fileID: 1031274282}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2023753593
 GameObject:
@@ -1564,5 +1563,6 @@ SceneRoots:
   - {fileID: 904897583}
   - {fileID: 1741775150}
   - {fileID: 673368235}
+  - {fileID: 1929073519}
   - {fileID: 1031274282}
   - {fileID: 144017642}

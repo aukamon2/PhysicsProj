@@ -17,13 +17,14 @@ public class GunSystem : MonoBehaviour
     public Camera  fpsCamera;
     public Transform attackPoint;
     public RaycastHit rayHit;
-    public LayerMask isEnemy;
-    public GameObject muzzleFlashEffect, bulletHoleGraphic;
+    public LayerMask isEnemy,isWall,Grounded;
+    public GameObject muzzleFlash, bulletHoleGraphic;
     public TextMeshProUGUI ammoDisplay;
     void Start()
     {
         bulletsLeft = magazineSize;
         readytoShoot = true;
+        
     }
 
     // Update is called once per frame
@@ -74,9 +75,10 @@ public class GunSystem : MonoBehaviour
            if (rayHit.collider.CompareTag("Enemies"))
                 rayHit.collider.GetComponent<AiBehavior>().TakeDamage(damage);
         }
-        //graphic
-        Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0,180,0));
-        Instantiate(muzzleFlashEffect, attackPoint.position, Quaternion.identity);
+        
+            //graphic
+        Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.LookRotation(rayHit.normal));
+        Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
 
         bulletsLeft--;
         bulletsShot--;
