@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GunSystem : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GunSystem : MonoBehaviour
     public Transform attackPoint;
     public RaycastHit rayHit;
     public LayerMask isEnemy;
+    public GameObject muzzleFlashEffect, bulletHoleGraphic;
+    public TextMeshProUGUI ammoDisplay;
     void Start()
     {
         bulletsLeft = magazineSize;
@@ -27,6 +30,9 @@ public class GunSystem : MonoBehaviour
     private void Update()
     {
         MyInput();
+
+        
+       ammoDisplay.SetText(bulletsLeft/bulletPerTabs+"/"+magazineSize/bulletPerTabs);
     }
     private void MyInput()
     {
@@ -65,9 +71,13 @@ public class GunSystem : MonoBehaviour
         {
             Debug.Log(rayHit.collider.name);
 
-           // if (rayHit.collider.CompareTag("Enemy"))
-             //   rayHit.collider.GetComponent<ShootingAi>().TakeDamage(damage);
+           if (rayHit.collider.CompareTag("Enemies"))
+                rayHit.collider.GetComponent<AiBehavior>().TakeDamage(damage);
         }
+        //graphic
+        Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0,180,0));
+        Instantiate(muzzleFlashEffect, attackPoint.position, Quaternion.identity);
+
         bulletsLeft--;
         bulletsShot--;
         Invoke("ResetShoot",timeBetweenShooting);

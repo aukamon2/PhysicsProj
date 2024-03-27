@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 144017641}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.35, y: 0.062000003, z: 1.04}
+  m_LocalPosition: {x: -25.2, y: 0.062000003, z: 1.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -196,7 +196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9eba90f872d7e34b91b22cad9a9bd1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
   player: {fileID: 1031274282}
   Grounded:
     serializedVersion: 2
@@ -207,6 +206,7 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttack: 2
+  projectile: {fileID: 0}
   health: 20
   sightRange: 15
   attackRange: 10
@@ -221,7 +221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 645068270}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: attackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,8 +236,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645068269}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.35}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.46000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -357,7 +357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 683752993}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -696,9 +696,9 @@ GameObject:
   - component: {fileID: 1031274282}
   - component: {fileID: 1031274281}
   - component: {fileID: 1031274283}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -789,7 +789,7 @@ GameObject:
   - component: {fileID: 1279273572}
   - component: {fileID: 1279273571}
   - component: {fileID: 1279273570}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GunModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -892,7 +892,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1368914218}
   - component: {fileID: 1368914219}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -933,7 +933,7 @@ MonoBehaviour:
   spread: 0.01
   range: 100
   reloadTime: 1.75
-  timeBetweenShot: 0.5
+  timeBetweenShot: 0
   magazineSize: 24
   bulletPerTabs: 6
   allowButtonHold: 1
@@ -942,6 +942,9 @@ MonoBehaviour:
   isEnemy:
     serializedVersion: 2
     m_Bits: 128
+  muzzleFlashEffect: {fileID: 1000010254994808, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
+  bulletHoleGraphic: {fileID: 1000010844420130, guid: 4edabb1c0dde62743b137378c7d22980, type: 3}
+  ammoDisplay: {fileID: 0}
 --- !u!1 &1741775146
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,7 +1059,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1785471512}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camerapos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1090,7 +1093,7 @@ GameObject:
   - component: {fileID: 1886878968}
   - component: {fileID: 1886878967}
   - component: {fileID: 1886878966}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1195,7 +1198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1929073519}
   - component: {fileID: 1929073518}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CameraHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1349,7 +1352,7 @@ GameObject:
   - component: {fileID: 2030873539}
   - component: {fileID: 2030873538}
   - component: {fileID: 2030873537}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fpsCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}

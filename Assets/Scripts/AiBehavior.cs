@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class AiBehavior : MonoBehaviour
 {
-    public NavMeshAgent agent;
+    //public NavMeshAgent agent;
 
     public Transform player;
     public LayerMask Grounded, isPlayer;
@@ -18,6 +18,7 @@ public class AiBehavior : MonoBehaviour
     //Chase
     public float timeBetweenAttack;
     bool alreadyAttack;
+    public GameObject projectile;
 
     public int health;
 
@@ -28,7 +29,7 @@ public class AiBehavior : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").transform;
-        agent = GetComponent<NavMeshAgent>();
+        //agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -37,8 +38,8 @@ public class AiBehavior : MonoBehaviour
         //Check if player in range
         playerInSightRange = Physics.CheckSphere(transform.position,sightRange,isPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, isPlayer);
-        if (!playerInSightRange && !playerInAttackRange) Patrolling();
-        if(playerInSightRange && !playerInAttackRange) ChasePlayer();
+       // if (!playerInSightRange && !playerInAttackRange) Patrolling();
+        //if(playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
         
     }
@@ -46,11 +47,11 @@ public class AiBehavior : MonoBehaviour
     {
         if (!walkPointSet) SearchWalkPoint();
         if (walkPointSet)
-            agent.SetDestination(walkPoint);
+           // agent.SetDestination(walkPoint);
         
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+        //Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-        if(distanceToWalkPoint.magnitude < 1f)
+        //if(distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
     }
     
@@ -64,14 +65,16 @@ public class AiBehavior : MonoBehaviour
     }
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+        //agent.SetDestination(player.position);
     }
     private void AttackPlayer()
     {
-        agent.SetDestination(transform.position);
+        //agent.SetDestination(transform.position);
         transform.LookAt(player);
         if(!alreadyAttack)
         {
+            
+
             alreadyAttack = true;
             Invoke(nameof(ResetAttack), timeBetweenAttack);
         }
