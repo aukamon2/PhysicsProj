@@ -18,8 +18,10 @@ public class GunSystem : MonoBehaviour
     public Transform attackPoint;
     public RaycastHit rayHit;
     public LayerMask isEnemy,isWall,Grounded;
-    public GameObject muzzleFlash, bulletHoleGraphic;
+    public GameObject muzzleFlash, bulletHoleGraphic,bulletHoleGraphicWall;
     public TextMeshProUGUI ammoDisplay;
+    
+    
     void Start()
     {
         bulletsLeft = magazineSize;
@@ -60,7 +62,7 @@ public class GunSystem : MonoBehaviour
         bulletsLeft = magazineSize;
         reloading = false;
     }
-    private void Shoot()
+    public void Shoot()
     {
         readytoShoot = false;
         float x = Random.Range(-spread, spread);
@@ -70,15 +72,27 @@ public class GunSystem : MonoBehaviour
         //RayCast
         if (Physics.Raycast(fpsCamera.transform.position, direction ,out rayHit, range, isEnemy))
         {
-            Debug.Log(rayHit.collider.name);
+            Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.LookRotation(rayHit.normal));
+            
+           
+            if (rayHit.collider.CompareTag("Enemies"))
+            {
+                Debug.Log("Hit");
+                AiBehavior enemy = rayHit.collider.GetComponent<AiBehavior>();
+                if(enemy != null)
+                {
+                    enemy.TakeDamage(damage);
+                }
 
-           if (rayHit.collider.CompareTag("Enemies"))
-                rayHit.collider.GetComponent<AiBehavior>().TakeDamage(damage);
+            }
         }
-        
+        if (Physics.Raycast(fpsCamera.transform.position, direction, out rayHit, range, isWall) || Physics.Raycast(fpsCamera.transform.position, direction, out rayHit, range, Grounded))
+        {
+            Instantiate(bulletHoleGraphicWall, rayHit.point, Quaternion.LookRotation(rayHit.normal));
+        }
+
             //graphic
-        Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.LookRotation(rayHit.normal));
-        Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+            Instantiate(muzzleFlash, attackPoint.transform.position, Quaternion.identity);
 
         bulletsLeft--;
         bulletsShot--;
@@ -91,4 +105,5 @@ public class GunSystem : MonoBehaviour
     {
         readytoShoot = true;
     }
+    
 }
