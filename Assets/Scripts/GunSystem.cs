@@ -33,7 +33,14 @@ public class GunSystem : MonoBehaviour
     private void Update()
     {
         MyInput();
-
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        if(Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            Cursor.lockState= CursorLockMode.Locked;
+        }
         
        ammoDisplay.SetText(bulletsLeft/bulletPerTabs+"/"+magazineSize/bulletPerTabs);
     }
