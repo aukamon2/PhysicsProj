@@ -10461,7 +10461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7322659023045378944, guid: 44b9d08a8b04f554786cea3078eed8c6, type: 3}
       propertyPath: attackRange
-      value: 15
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7322659023045378944, guid: 44b9d08a8b04f554786cea3078eed8c6, type: 3}
       propertyPath: walkPointRange
